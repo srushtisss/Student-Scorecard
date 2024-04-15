@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Score Card</title>
+<style>
+  /* CSS styles for the score card */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .remarks {
+    font-style: italic;
+  }
+  .fail {
+    background-color: #ffcccc;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Score Card</h1>
+    <p>Full Name: Smita Raj </p>
+    <p>Roll Number: ABCD1234E</p>
+    <p>College Name: MODERN COLLEGE</p>
+    <p>University: SPPU University</p>
+    <p>Academic Year: 2024-2025</p>
+    <table>
+      <tr>
+        <th>Subject</th>
+        <th>Out of</th>
+        <th>Obtained Marks</th>
+        <th>Percentage</th>
+        <th>Remove</th>
+      </tr>
+      <tr>
+        <td>Mathematics</td>
+        <td>100</td>
+        <td>85</td>
+        <td>85%</td>
+        <td><button class="remove-subject">Remove</button></td>
+      </tr>
+      <tr class="fail">
+        <td>Science</td>
+        <td>100</td>
+        <td>40</td>
+        <td>40%</td>
+        <td><button class="remove-subject">Remove</button></td>
+      </tr>
+      <!-- Add more rows dynamically based on the submitted data -->
+    </table>
+    <button id="addSubject">Add More Subject</button><br><br>
+    <p class="remarks">Grade: Fail</p>
+  </div>
+  <script>
+    document.getElementById('addSubject').addEventListener('click', function() {
+      var table = document.querySelector('table');
+      var newRow = table.insertRow(table.rows.length - 1);
+      newRow.innerHTML = `
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td></td>
+        <td><button class="remove-subject">Remove</button></td>
+      `;
+    });
+
+    document.querySelector('.container').addEventListener('click', function(e) {
+      if (e.target && e.target.classList.contains('remove-subject')) {
+        e.target.closest('tr').remove();
+      }
+    });
+  </script>
+</body>
+</html>
